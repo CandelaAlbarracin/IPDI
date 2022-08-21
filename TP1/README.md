@@ -19,3 +19,8 @@
   <li>lena.png, pub.png, stinkbug.png, tiger.png: Imágenes .png de prueba</li>
 </ul>
 
+📦 **Paquetes Utilizados**
+   -Numpy
+   -Matplotlib
+   -PyQt5
+   -PySide 2 y 6
