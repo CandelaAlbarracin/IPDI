@@ -58,3 +58,27 @@ def cuasi_suma_YIQ_prom(img1,img2):
     img[:,:,1]=(img1[:,:,0]*img1[:,:,1]+img2[:,:,0]*img2[:,:,1])/(img1[:,:,0]+img2[:,:,0])
     img[:,:,2]=(img1[:,:,0]*img1[:,:,2]+img2[:,:,0]*img2[:,:,2])/(img1[:,:,0]+img2[:,:,0])
     return img
+
+def if_ligther_YIQ(img1,img2):
+    '''
+    img1:matriz nxn
+    img2:matriz nxn
+    Esta función realiza la cuasi-suma if-lighter en YIQ de dos imagenes
+    '''
+    img=np.ndarray(img1.shape)
+    img[:,:,0]=np.maximum(img1[:,:,0],img2[:,:,0])
+    img[:,:,1]=np.where(img1[:,:,0]>=img2[:,:,0],img1[:,:,1],img2[:,:,1])
+    img[:,:,2]=np.where(img1[:,:,0]>=img2[:,:,0],img1[:,:,2],img2[:,:,2])
+    return img
+
+def if_ligther_RGB(img1,img2):
+    '''
+    img1:matriz nxn
+    img2:matriz nxn
+    Esta función realiza la cuasi-suma if-lighter en RGB de dos imagenes
+    '''
+    img=np.ndarray(img1.shape)
+    img[:,:,0]=np.maximum(img1[:,:,0],img2[:,:,0])
+    img[:,:,1]=np.maximum(img1[:,:,1],img2[:,:,1])
+    img[:,:,2]=np.maximum(img1[:,:,2],img2[:,:,2])
+    return img
