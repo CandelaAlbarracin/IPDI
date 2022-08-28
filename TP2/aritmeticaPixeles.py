@@ -180,3 +180,33 @@ def if_darker_RGB(img1,img2):
     img[:,:,2]=np.minimum(img1[:,:,2],img2[:,:,2])
     return img
 
+def producto_img(img1,img2,norm=False):
+    '''
+    img1:matriz nxn
+    img2:matriz nxn
+    norm: Valores RGB normalizados. Por defecto esta en false
+    Esta función realiza el producto en RGB de dos imagenes
+    '''
+    img=np.ndarray(img1.shape)
+    img[:,:,0]=np.multiply(img1[:,:,0],img2[:,:,0])
+    img[:,:,1]=np.multiply(img1[:,:,1],img2[:,:,1])
+    img[:,:,2]=np.multiply(img1[:,:,2],img2[:,:,2])
+    if norm:
+        return img
+    else:
+        return (1/255*img).astype(np.uint8)
+
+def cociente_img(img1,img2):
+    '''
+    img1:matriz nxn
+    img2:matriz nxn
+    norm: Valores RGB normalizados. Por defecto esta en false
+    Esta función realiza el cociente en RGB de dos imagenes
+    '''
+    minimo1=np.min(img1[np.nonzero(img1)])
+    minimo2=np.min(img2[np.nonzero(img2)])
+    minimo=min(minimo1,minimo2)
+    img=np.multiply(np.ones(img1.shape),minimo)
+    np.divide(img1,img2, out=img, where=img2!=0)
+    return img
+    

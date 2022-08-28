@@ -13,6 +13,9 @@ class ventana(QtWidgets.QMainWindow):
         super(ventana, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.ui.cb_formato.addItem("Valor Absoluto")
+        self.ui.cb_op.addItem("Producto")
+        self.ui.cb_op.addItem("Cociente")
         self.ui.btn_salir.clicked.connect(self.salir)
         self.ui.btn_img_1.clicked.connect(self.subir_img_1)
         self.ui.btn_img_2.clicked.connect(self.subir_img_2)
@@ -90,9 +93,33 @@ class ventana(QtWidgets.QMainWindow):
                 elif form=="YIQ promedio":
                     img=aritmeticaPixeles.cuasi_resta_YIQ_prom(rgb_yiq(img1),rgb_yiq(img2))
                     self.mostrar_resultado(yiq_rgb(img))
+                elif form=="Valor Absoluto":
+                    img=aritmeticaPixeles.cuasi_resta_abs(img1,img2)
+                    self.mostrar_resultado(img)
+            elif op=="if-ligther":
+                if form=="RGB":
+                    img=aritmeticaPixeles.if_ligther_RGB(img1,img2)
+                    self.mostrar_resultado(img)
+                elif form=="YIQ":
+                    img=aritmeticaPixeles.if_ligther_YIQ(rgb_yiq(img1),rgb_yiq(img2))
+                    self.mostrar_resultado(yiq_rgb(img))
+            elif op=="if-darker":
+                if form=="RGB":
+                    img=aritmeticaPixeles.if_darker_RGB(img1,img2)
+                    self.mostrar_resultado(img)
+                elif form=="YIQ":
+                    img=aritmeticaPixeles.if_darker_YIQ(rgb_yiq(img1),rgb_yiq(img2))
+                    self.mostrar_resultado(yiq_rgb(img))
+            elif op=="Producto":
+                img=aritmeticaPixeles.producto_img(img1,img2,True)
+                self.mostrar_resultado(img)
+            elif op=="Cociente":
+                img=aritmeticaPixeles.cociente_img(img1,img2)
+                self.mostrar_resultado(img)
+
         else:
             QtWidgets.QMessageBox.about(self,"Advertencia","Las imagenes selecionadas no tienen el mismo tamaño. Busque otras imagenes")
-    
+
 
     def mostrar_resultado(self,img):
         rgb=img*255
