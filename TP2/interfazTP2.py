@@ -77,6 +77,19 @@ class ventana(QtWidgets.QMainWindow):
                 elif form=="YIQ promedio":
                     img=aritmeticaPixeles.cuasi_suma_YIQ_prom(rgb_yiq(img1),rgb_yiq(img2))
                     self.mostrar_resultado(yiq_rgb(img))
+            elif op=="Cuasi-Resta":
+                if form=="RGB clamping":
+                    img=aritmeticaPixeles.cuasi_resta_RGB(img1,img2,True)
+                    self.mostrar_resultado(img)
+                elif form=="RGB promedio":
+                    img=aritmeticaPixeles.cuasi_resta_RGB_prom(img1,img2,True)
+                    self.mostrar_resultado(img)
+                elif form=="YIQ clamping":
+                    img=aritmeticaPixeles.cuasi_resta_YIQ(rgb_yiq(img1),rgb_yiq(img2))
+                    self.mostrar_resultado(yiq_rgb(img))
+                elif form=="YIQ promedio":
+                    img=aritmeticaPixeles.cuasi_resta_YIQ_prom(rgb_yiq(img1),rgb_yiq(img2))
+                    self.mostrar_resultado(yiq_rgb(img))
         else:
             QtWidgets.QMessageBox.about(self,"Advertencia","Las imagenes selecionadas no tienen el mismo tamaño. Busque otras imagenes")
     
@@ -84,6 +97,7 @@ class ventana(QtWidgets.QMainWindow):
     def mostrar_resultado(self,img):
         rgb=img*255
         rgb=np.minimum(rgb,255)
+        rgb=np.maximum(rgb,0)
         h,w,_=rgb.shape
         im = QtGui.QImage(rgb.astype(np.uint8), w, h, 3*w,QtGui.QImage.Format_RGB888)
         pix = QtGui.QPixmap.fromImage(im)
