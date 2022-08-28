@@ -144,11 +144,23 @@ def cuasi_resta_YIQ_prom(img1,img2):
     img[:,:,2]=(img1[:,:,0]*img1[:,:,2]-img2[:,:,0]*img2[:,:,2])/(img1[:,:,0]+img2[:,:,0])
     return img
 
+def cuasi_resta_abs(img1,img2):
+    '''
+    img1:matriz nxn
+    img2:matriz nxn
+    Esta función realiza la cuasi resta en RGB de dos imagenes
+    '''
+    img=np.ndarray(img1.shape)
+    img[:,:,0]=np.abs(img1[:,:,0]-img2[:,:,0])
+    img[:,:,1]=np.abs(img1[:,:,1]-img2[:,:,1])
+    img[:,:,2]=np.abs(img1[:,:,2]-img2[:,:,2])
+    return img
+
 def if_darker_YIQ(img1,img2):
     '''
     img1:matriz nxn
     img2:matriz nxn
-    Esta función realiza la cuasi-suma if-darker en YIQ de dos imagenes
+    Esta función realiza if-darker en YIQ de dos imagenes
     '''
     img=np.ndarray(img1.shape)
     img[:,:,0]=np.minimum(img1[:,:,0],img2[:,:,0])
@@ -160,10 +172,11 @@ def if_darker_RGB(img1,img2):
     '''
     img1:matriz nxn
     img2:matriz nxn
-    Esta función realiza la cuasi-suma if-darker en RGB de dos imagenes
+    Esta función realiza if-darker en RGB de dos imagenes
     '''
     img=np.ndarray(img1.shape)
     img[:,:,0]=np.minimum(img1[:,:,0],img2[:,:,0])
     img[:,:,1]=np.minimum(img1[:,:,1],img2[:,:,1])
     img[:,:,2]=np.minimum(img1[:,:,2],img2[:,:,2])
     return img
+
