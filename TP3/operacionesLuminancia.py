@@ -43,7 +43,7 @@ def lineal_trozos(img:np.ndarray,minimo:float,maximo:float):
     '''
     yiq=rgb_yiq(img)
     y=yiq[:,:,0]
-    np.piecewise(y, [y<minimo,np.logical_and(y>=minimo,y<=maximo) ,y>maximo], [lambda y: 0, lambda y:(y-minimo)/(maximo-minimo) ,lambda y: 1])
+    y=np.piecewise(y, [y<minimo,np.logical_and(y>=minimo,y<=maximo) ,y>maximo], [lambda y: 0, lambda y:(y-minimo)/(maximo-minimo) ,lambda y: 1])
     yiq[:,:,0]=y
     rgb=yiq_rgb(yiq)
     return rgb

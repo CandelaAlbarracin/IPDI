@@ -156,6 +156,8 @@ class Filtro(QtWidgets.QMainWindow):
         temp=img1
         h,w,_=temp.shape
         rgb=temp[:,:,0:3]*255
+        rgb=np.minimum(rgb,255)
+        rgb=np.maximum(rgb,0)
         im = QtGui.QImage(rgb.astype(np.uint8), w, h, 3*w,QtGui.QImage.Format_RGB888)
         pix = QtGui.QPixmap.fromImage(im)
         pixmap_filtro.setPixmap(pix)
