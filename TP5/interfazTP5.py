@@ -156,7 +156,10 @@ class mywindow(QtWidgets.QMainWindow):
             self.ui.lbl_img.setPixmap(pix)
     
     def closeEvent(self, event):
-        remove("temp.png")
+        try:
+            remove("temp.png")
+        except:
+            pass
         event.accept()
 
 
