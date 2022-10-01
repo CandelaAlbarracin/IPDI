@@ -98,7 +98,10 @@ class mywindow(QtWidgets.QMainWindow):
         elif opc=="Mediana 3x3":
             y=morfologia.repetir_filas(y,np.ones((3,3)))
             img_filtro=morfologia.mediana(y)
-
+        elif opc=="Top Hat 3x3":
+            img_filtro=morfologia.top_hat(y)
+        elif opc=="Bottom Hat 3x3":
+            img_filtro=morfologia.bottom_hat(y)
         try:
             yiq[:,:,0]=img_filtro
             img_mod=yiq_rgb(yiq)

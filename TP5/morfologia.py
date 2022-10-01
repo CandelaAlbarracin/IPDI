@@ -1,6 +1,4 @@
 import numpy as np
-import matplotlib.image as mpimg
-import matplotlib.pyplot as plt
 
 def repetir_filas(img,kernel):
     n=kernel.shape[0]
@@ -59,3 +57,13 @@ def mediana(img,kernel=np.ones((3,3))):
         for y in range(res.shape[1]):
             res[x,y]=np.median(img[x:x+dim_k[0],y:y+dim_k[1]]*kernel)
     return res
+
+def top_hat(img, kernel=np.ones((3,3))):
+    ap=apertura(img,kernel)
+    ap=repetir_filas(repetir_filas(ap,kernel),kernel)
+    return np.maximum(img-ap,0)
+
+def bottom_hat(img,kernel=np.ones((3,3))):
+    ci=cierre(img,kernel)
+    ci=repetir_filas(repetir_filas(ci,kernel),kernel)
+    return np.maximum(ci-img,0)

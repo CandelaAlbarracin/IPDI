@@ -306,6 +306,16 @@
           <string>Mediana 3x3</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>Top Hat 3x3</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Bottom Hat 3x3</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item>
